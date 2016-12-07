@@ -17,6 +17,8 @@
     $service_broker = $_ENV["CF_SERVICE"];
     $filepath = json_decode($_ENV["VCAP_SERVICES"],true)[$service_broker][0]['volume_mounts'][0]['container_path'];
     $filepath = $filepath . "/test.txt";
+    $filepath = urlencode($filepath);
+    echo "Filepath: $filepath";
     if(!empty($_POST))
     {
        $fh = fopen($filepath, 'a') or die("can't open file");
